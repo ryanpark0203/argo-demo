@@ -5,9 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/heptio-images/ks-guestbook-demo
-  tag: 0.1
+  repository: australia-southeast1-docker.pkg.dev/a1322-registry-prd-qcfz/c045/qcpconsoleui
+  tag: QCPP-1821
   pullPolicy: IfNotPresent
+  pullSecret: artifact-registry
 
 service:
   type: ClusterIP
