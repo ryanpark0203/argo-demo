@@ -7,7 +7,6 @@ metadata:
     chart: {{ template "helm-guestbook.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    extra: extra
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 3
@@ -20,6 +19,7 @@ spec:
       labels:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
+        extra: extra
     spec:
       imagePullSecrets:
       - name: {{ .Values.image.pullSecret }}    
