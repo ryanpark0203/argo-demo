@@ -1,6 +1,4 @@
 replicaCount: 1
-labels:
-  hello: world
 
 image:
   repository: australia-southeast1-docker.pkg.dev/a1322-registry-prd-qcfz/c045/qcpconsoleui

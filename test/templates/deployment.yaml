@@ -2,8 +2,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "helm-guestbook.fullname" . }}
-  labels: 
-    {{ .Values.labels }}
+  labels:
+    app: {{ template "helm-guestbook.name" . }}
+    chart: {{ template "helm-guestbook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    extra: extra
 spec:
   replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit: 3
