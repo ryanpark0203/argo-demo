@@ -1,5 +1,8 @@
 replicaCount: 1
 
+labels:
+  ping: pong
+  
 image:
   repository: australia-southeast1-docker.pkg.dev/a1322-registry-prd-qcfz/c045/qcpconsoleui
   tag: latest

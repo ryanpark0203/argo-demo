@@ -1,0 +1,67 @@
+---
+# Source: helm-guestbook/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: release-name-helm-guestbook
+  labels:
+    app: helm-guestbook
+    chart: helm-guestbook-0.1.0
+    release: release-name
+    heritage: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: helm-guestbook
+    release: release-name
+---
+# Source: helm-guestbook/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: release-name-helm-guestbook
+  labels:
+    app: helm-guestbook
+    chart: helm-guestbook-0.1.0
+    release: release-name
+    heritage: Helm
+    ping: "pong"    
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: helm-guestbook
+      release: release-name
+  template:
+    metadata:
+      labels:
+        app: helm-guestbook
+        release: release-name
+        ping: "pong"
+    spec:
+      imagePullSecrets:
+      - name: artifact-registry    
+      containers:
+        - name: helm-guestbook
+          image: "australia-southeast1-docker.pkg.dev/a1322-registry-prd-qcfz/c045/qcpconsoleui:latest"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
