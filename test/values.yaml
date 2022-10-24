@@ -6,13 +6,13 @@ replicaCount: 1
 
 image:
   repository: australia-southeast1-docker.pkg.dev/a1322-registry-prd-qcfz/c045/qcpconsoleui
-  tag: QCPP-1821
+  tag: latest
   pullPolicy: IfNotPresent
   pullSecret: artifact-registry
 
 service:
   type: ClusterIP
-  port: 8081
+  port: 3000
 
 ingress:
   enabled: false
