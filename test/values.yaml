@@ -2,6 +2,7 @@ replicaCount: 1
 
 labels:
   ping: pong
+  demo: true
 
 image:
   repository: australia-southeast1-docker.pkg.dev/a1322-registry-prd-qcfz/c045/qcpconsoleui
